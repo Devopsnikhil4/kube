@@ -11,9 +11,9 @@ pipeline {
             }
         stage('sending docker file to Ansible server over ssh'){
             steps{
-    
                 sh 'ssh -o StrictHostKeyChecking=no centos@172.31.54.210'
                 sh 'scp /var/lib/jenkins/workspace/pipeline-demo/* centos@172.31.54.210:/home/centos'
+                }
             }
         }
     }
