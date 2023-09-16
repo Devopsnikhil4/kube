@@ -2,20 +2,15 @@ pipeline {
     agent any
     
     environment {
-        ENV_URL         = "pipeline.google.com" 
         SSHCRED         = credentials('SSH_CRED') 
-    }   
-    stages {
-        stage('Stage FOUR') {
-            steps {                 
-                sh ''' 
-                echo "This is stage Four"
-                echo "Name of the URL is ${ENV_URL}"
-                echo -e "\\e[31m Welcome"
-                sleep 1
-
-                ''' 
-            }
-        }
+    }
+    stage('Git checkout'){
+        git branch: 'main', url: 'https://github.com/Devopsnikhil4/kube.git'
+    }
+    stage('sending docker file to Ansible server over ssh'){
+ 
+            sh 'ssh -o StrictHostKeyChecking=no centos@172.31.54.210'
+            sh 'scp /var/lib/jenkins/workspace/pipeline-demo/* centos@172.31.54.210:/home/centos'
+    
     }
 }
