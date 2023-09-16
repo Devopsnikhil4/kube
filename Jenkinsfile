@@ -1,10 +1,14 @@
 node{
+    agent {
+        label any
+    }
+    environment {
+        SSHCRED         = credentials('SSH_CRED') 
+    }
+
     stage('Git checkout'){
         git branch: 'main', url: 'https://github.com/Devopsnikhil4/kube.git'
     }
-        environment {
-            SSHCRED         = credentials('SSH_CRED') 
-        }
     stage('sending docker file to Ansible server over ssh'){
 
             sh 'ssh centos@172.31.54.210'
