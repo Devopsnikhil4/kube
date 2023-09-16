@@ -4,7 +4,7 @@ node{
     }
     environment {
         SSHCRED         = credentials('SSH_CRED') 
-    }
+    }   
 
     stage('Git checkout'){
         git branch: 'main', url: 'https://github.com/Devopsnikhil4/kube.git'
