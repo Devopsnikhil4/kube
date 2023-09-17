@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        DOCKER_HUB_CREDENTIALS = credentials('DOC_PASS') // Use the ID you assigned
+    }
     stages {
         stage('Git checkout') {
             steps{
@@ -31,16 +34,16 @@ pipeline {
                 }    
             }       
         }
-        stage('Push Docker Image to Docker HUB'){
-            steps{
-                sshagent(['anisble']) {
-                    withCredentials([string(credentialsId: 'DOKHUB_PAS', variable: 'DOCHUB_PAS')]) {
-                        sh "ssh -o StrictHostKeyChecking=no centos@172.31.54.210 docker login -u nikkum -p ${DOKHUB_PAS}"
-                        sh 'ssh -o StrictHostKeyChecking=no centos@172.31.54.210 docker image tag push nikkum/$JOB_NAME:v1.$BUILD_ID '
-                        sh 'ssh -o StrictHostKeyChecking=no centos@172.31.54.210 docker image tag push nikkum/$JOB_NAME:latest'
+        stages {
+        stage('Build and Push Docker Image') {
+            steps {
+                script {
+                    docker.withRegistry('https://hub.docker.com/repositories/nikkum', DOC_PASS) {                       
+                        docker.image('nikkum/$JOB_NAME:v1.$BUILD_ID').push()
+                        docker.image('nikkum/$JOB_NAME:latest').push()
                     }
-                }    
-            }       
+                }
+            }
         }
     } 
 }   
