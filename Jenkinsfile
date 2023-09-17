@@ -12,7 +12,7 @@ pipeline {
         stage('Moving file') {        
             steps{
                 sshagent(['anisble']) {
-                    sh 'ssh -o StrictHostKeyChecking=no centos@172.31.54.210'
+                    sh 'ssh -o StrictHostKeyChecking=no centos@100.26.56.67'
                     sh 'scp /var/lib/jenkins/workspace/pipeline-demo/*172.31.54.210:/home/centos'
                     }    
             }
