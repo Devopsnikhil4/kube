@@ -33,8 +33,7 @@ pipeline {
                     sh 'ssh -o StrictHostKeyChecking=no centos@172.31.54.210 docker image tag $JOB_NAME:v1.$BUILD_ID nikkum/$JOB_NAME:latest'
                 }    
             }       
-        }
-        stages {
+        } 
         stage('Build and Push Docker Image') {
             steps {
                 script {
