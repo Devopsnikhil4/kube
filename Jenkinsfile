@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment {
-        DOCKER_HUB_CREDENTIALS = credentials('DOC_PASS') // Use the ID you assigned
-    }
     stages {
         stage('Git checkout') {
             steps{
