@@ -1,8 +1,6 @@
 pipeline {
     agent any
-    environment {        
-        SSHCRED         = credentials('SSH_CRED') 
-    }
+
     stages {
         stage('Git checkout') {
             steps{
