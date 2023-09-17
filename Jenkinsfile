@@ -38,7 +38,7 @@ pipeline {
             steps{
                 sshagent(['anisble']) {
                     withCredentials([string(credentialsId: 'DOKHUB_PAS', variable: 'DOC_2')]) {
-                        sh "ssh -o StrictHostKeyChecking=no centos@172.31.54.210 docker login -u nikkum -p ${DOKHUB_PAS}"
+                        sh "ssh -o StrictHostKeyChecking=no centos@172.31.54.210 docker login -u nikkum -p ${DOC_2}"
                         sh 'ssh -o StrictHostKeyChecking=no centos@172.31.54.210 docker image tag push nikkum/$JOB_NAME:v1.$BUILD_ID '
                         sh 'ssh -o StrictHostKeyChecking=no centos@172.31.54.210 docker image tag push nikkum/$JOB_NAME:latest'
                     }
