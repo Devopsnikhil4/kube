@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         ENV_URL         = "pipeline.google.com"                  // Pipeline variable
-        SSHCRED         = credentials('SSH_CRED') 
+        SSH_CRED         = credentials('SSH_CRED') 
     }
     stages {
         stage('Git checkout'){
