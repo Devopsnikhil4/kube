@@ -1,11 +1,15 @@
 pipeline {
-    agent any
+    agent {
+        label 'any'
+    }
     environment {
+        ENV_URL         = "pipeline.google.com"                  // Pipeline variable
         SSHCRED         = credentials('SSH_CRED') 
     }
     options {
-        buildDiscarder(logRotator(numToKeepStr: '5')) }
+        buildDiscarder(logRotator(numToKeepStr: '5')) 
     }
+    
     parameters {
         string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
         text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
