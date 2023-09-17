@@ -4,7 +4,6 @@ pipeline {
         SSHCRED         = credentials('SSH_CRED') 
     }
     stages {
-        
         steps('Git checkout') {
             git branch: 'main', credentialsId: 'SSH_CRED', url: 'https://github.com/Devopsnikhil4/kube.git'
             }
