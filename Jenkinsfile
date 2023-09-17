@@ -13,6 +13,7 @@ pipeline {
             steps{
                 sshagent(['SSH_CRED']) {
                     sh 'ssh -o StrictHostKeyChecking=no centos@172.31.54.210'
+                    sh 'scp /var/lib/jenkins/workspace/pipeline-demo/*172.31.54.210:/home/centos'
                     }    
             }
         }                                     
