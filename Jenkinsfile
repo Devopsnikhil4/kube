@@ -8,6 +8,7 @@ pipeline {
             steps{
                 git branch: 'main', credentialsId: 'SSH_CRED', url: 'https://github.com/Devopsnikhil4/kube.git'
                 }
+        }        
         stage('Moving file') {        
             steps{
                 sshagent(['SSH_CRED']) {
@@ -17,17 +18,3 @@ pipeline {
         }                                     
     }
 }
-
-// Examples of scripted pipeline
-
-// node {
-//     stage('Example') {
-//         if (env.BRANCH_NAME == 'master') {
-//             echo 'I only execute on the master branch'
-           
-//         } else {
-//             echo 'I execute elsewhere'
-//              sh "env"
-//         }
-//     }
-// }
