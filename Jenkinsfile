@@ -15,9 +15,11 @@ pipeline {
             }
         }  
         stage('Docker Image'){
-            sshagent(['anisble']) {
-                sh 'ssh -o StrictHostKeyChecking=no centos@172.31.54.210 cd /home/centos'
-                sh 'ssh -o StrictHostKeyChecking=no centos@172.31.54.210 docker image build -t $JOB_NAME:v1.$BUILD_ID .'
+            steps{
+                sshagent(['anisble']) {
+                    sh 'ssh -o StrictHostKeyChecking=no centos@172.31.54.210 cd /home/centos'
+                    sh 'ssh -o StrictHostKeyChecking=no centos@172.31.54.210 docker image build -t $JOB_NAME:v1.$BUILD_ID .'
+                }    
             }       
         }                                   
     }
