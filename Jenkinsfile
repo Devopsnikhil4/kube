@@ -4,12 +4,14 @@ pipeline {
         SSHCRED         = credentials('SSH_CRED') 
     }
     stages {
-        steps('Git checkout') {
-            git branch: 'main', credentialsId: 'SSH_CRED', url: 'https://github.com/Devopsnikhil4/kube.git'
-            }
-        steps('In Parallel 2') {
-                sshagent(['SSH_CRED']) {
-                    sh 'ssh -o StrictHostKeyChecking=no centos@172.31.54.210'
+        stage{
+            steps('Git checkout') {
+                git branch: 'main', credentialsId: 'SSH_CRED', url: 'https://github.com/Devopsnikhil4/kube.git'
+                }
+            steps('In Parallel 2') {
+                    sshagent(['SSH_CRED']) {
+                        sh 'ssh -o StrictHostKeyChecking=no centos@172.31.54.210'
+                    }    
             }
         }                                     
     }
