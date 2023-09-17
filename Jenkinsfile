@@ -11,96 +11,18 @@ pipeline {
     stages {
         stage('Parallel Stages') {
             parallel {
-                stage('In Parallel 1') {
-                        steps {
-                            echo "In Parallel 1"
-                            sh "sleep 1"
-                            sh "hostname"
-                        }
+                stage('Git checkout') {
+                    git branch: 'main', credentialsId: 'SSH_CRED', url: 'https://github.com/Devopsnikhil4/kube.git'
                     }
                 stage('In Parallel 2') {
-                        steps {
-                            echo "In Parallel 2"
+                        sshagent(['SSH_CRED']) {
+                            sh 'ssh -o StrictHostKeyChecking=no centos@172.31.54.210'
                             sleep 1
                     }
                 }
-                stage('In Parallel 3') {
-                        steps {
-                            echo "In Parallel 3"
-                            sleep 1
-                    }
-                }
+                
             }
-        }
-        stage('Stage One') {
-            steps {    
-                    sh '''
-                        echo DevOps Training
-                        echo AWS Training
-                        echo Batch54
-                        echo Name of the URL is ${ENV_URL}
-                        sleep 10
-                        env
-
-                    '''
-            }
-        }
-
-        stage('Stage TWO') {
-            environment {
-                ENV_URL = "stage.google.com"                  // Stage  variab
-            }
-
-            // input {
-            //     message "Should we continue?"
-            //     ok "Yes, we should."
-            //     submitter "alice,bob"
-            //     parameters {
-            //         string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-            //     }
-            // }
-
-            steps {                 
-                echo  "This is stage two"
-                sleep 13
-            }
-        }
-
-        stage('Stage THREE') {
-            when {  
-                anyOf {
-                    branch 'dev' 
-                    changeset "**/*.js"
-                }
-            }
-            steps {                 
-                sh ''' 
-                echo "This is stage three"
-                echo "Name of the URL is ${ENV_URL}"
-                echo -e "\\e[31m Hai"
-                sleep 1
-
-                ''' 
-            }
-        }
-
-        stage('Stage FOUR') {
-            steps {                 
-                sh ''' 
-                echo "This is stage Four"
-                echo "Name of the URL is ${ENV_URL}"
-                echo -e "\\e[31m Welcome"
-                sleep 1
-
-                ''' 
-            }
-        }
-    }
-
-    post { 
-        always { 
-            cleanWs()
-        }
+        }                
     }
 }
 
