@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mrdevops
+  labels:
+    app: mrdevops
+spec:
+  selector:
+    app: mrdevops
+  type: LoadBalancer
+  ports:
+    - protocol: 8080
+      port: 80
+      targetPort: 31200

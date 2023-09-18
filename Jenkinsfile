@@ -42,14 +42,5 @@ pipeline {
                 }    
             }       
         }
-        // // stage('Build and Push Docker Image') {
-        // //     steps {
-        // //         docker.withRegistry('https://hub.docker.com/repositories/nikkum', DOC_PASS) {                       
-        // //             docker.image('nikkum/$JOB_NAME:v1.$BUILD_ID').push()
-        // //             docker.image('nikkum/$JOB_NAME:latest').push()
-        // //         }
-        // //     }
-            
-        // }
     } 
 }   

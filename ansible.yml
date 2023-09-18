@@ -1,0 +1,7 @@
+- hosts: all
+  become: true
+  tasks: 
+      - name: Create new deployment
+        command : Kubectl apply -f /home/centos/Deployment.yml
+      - name: Create new Service
+        command : Kubectl apply -f /home/centos/Service.yml
