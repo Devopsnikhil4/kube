@@ -45,8 +45,8 @@ pipeline {
         stage('Moving file from Jenkins to Kube') {        
             steps{
                 sshagent(['anisble']) {
-                    sh 'ssh -o StrictHostKeyChecking=no centos@172.31.54.210'
-                    sh 'scp /var/lib/jenkins/workspace/pipeline-demo/* centos@172.31.54.210:/home/centos'
+                    sh 'ssh -o StrictHostKeyChecking=no centos@172.31.60.204'
+                    sh 'scp /var/lib/jenkins/workspace/pipeline-demo/* centos@172.31.60.204:/home/centos'
                 }    
             }
         } 
