@@ -38,6 +38,8 @@ pipeline {
                         sh "ssh -o StrictHostKeyChecking=no centos@172.31.54.210 docker login -u nikkum -p ${DOC_2}"
                         sh 'ssh -o StrictHostKeyChecking=no centos@172.31.54.210 docker image push nikkum/$JOB_NAME:v1.$BUILD_ID '
                         sh 'ssh -o StrictHostKeyChecking=no centos@172.31.54.210 docker image push nikkum/$JOB_NAME:latest'
+
+                        sh 'ssh -o StrictHostKeyChecking=no centos@172.31.54.210 docker image rm nikkum/$JOB_NAME:v1.$BUILD_ID nikkum/$JOB_NAME:latest $JOB_NAME:v1.$BUILD_ID'
                     }
                 }    
             }       
