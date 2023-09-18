@@ -42,5 +42,13 @@ pipeline {
                 }    
             }       
         }
+        stage('Copying file from Ansible to Kubernetes') {        
+            steps{
+                sshagent(['Kubernetes_server']) {
+                    sh 'ssh -o StrictHostKeyChecking=no centos@172.31.60.204:/home/centos'
+                    sh 'scp /var/lib/jenkins/workspace/pipeline-demo/* centos@172.31.60.204:/home/centos'
+                }    
+            }
+        }
     } 
 }   
