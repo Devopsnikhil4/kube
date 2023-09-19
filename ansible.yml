@@ -1,6 +1,11 @@
-- hosts: all
-  become: true
-  tasks: 
-    - name: Printing Hello From Play1
-      ansible.builtin.debug:
-        msg: Hello from play1 of task1
+- name: Run kubectl command
+  hosts: all
+  tasks:
+    - name: create new deployment
+      ansible.builtin.command:
+        cmd: kubectl apply -f /home/ubuntu/Deployment.yml
+      become: yes
+    - name: create new service
+      ansible.builtin.command:
+        cmd: kubectl apply -f /home/ubuntu/Service.yml
+      become: yes  
