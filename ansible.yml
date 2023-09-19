@@ -4,7 +4,7 @@
     - name: create new deployment
       ansible.builtin.command:
         cmd: kubectl apply -f /home/centos/Deployment.yml
-      become: yes
+      become: true
     - name: create new service
       ansible.builtin.command:
         cmd: kubectl apply -f /home/centos/Service.yml
