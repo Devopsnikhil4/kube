@@ -1,7 +1,6 @@
 - hosts: all
   become: true
   tasks: 
-      - name: Create new deployment
-        command : Kubectl apply -f ls /home/centos/Deployment.yml
-      - name: Create new Service
-        command : Kubectl apply -f ls /home/centos/Service.yml
+    - name: Printing Hello From Play1
+      ansible.builtin.debug:
+        msg: Hello from play1 of task1
