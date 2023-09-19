@@ -1,4 +1,4 @@
-- hosts: 172.31.60.204
+- hosts: all
   become: true
   tasks: 
       - name: Create new deployment
