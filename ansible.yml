@@ -8,4 +8,4 @@
     - name: create new service
       ansible.builtin.command:
         cmd: kubectl apply -f /home/centos/Service.yml
-      become: yes  
+      become: yes   
