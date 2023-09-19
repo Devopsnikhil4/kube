@@ -55,7 +55,7 @@ pipeline {
         stage('Kubernetes Deployment using ansible') {        
             steps{
                 sshagent(['anisble']) {
-                    sh 'ssh -o StrictHostKeyChecking=no centos@172.31.54.210 '
+                    sh 'ssh -o StrictHostKeyChecking=no centos@172.31.54.210 cd /home/centos'
                     // sh 'ssh -o StrictHostKeyChecking=no centos@172.31.54.210 ansible -m ping node'
                     sh 'ssh -o StrictHostKeyChecking=no centos@172.31.54.210 ansible-playbook -i inv -e ansible_user=centos -e ansible_password=DevOps321 ansible.yml'
                 }    
