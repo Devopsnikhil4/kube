@@ -9,8 +9,8 @@ pipeline {
         stage('Moving file from Jenkins to Ansible') {        
             steps{
                 sshagent(['anisble']) {
-                    sh 'ssh -o StrictHostKeyChecking=no centos@172.31.54.210 cd /centos'
-                    sh 'scp /var/lib/jenkins/workspace/pipeline-demo/* centos@172.31.54.210'
+                    sh 'ssh -o StrictHostKeyChecking=no centos@172.31.54.210 '
+                    sh 'scp /var/lib/jenkins/workspace/pipeline-demo/* centos@172.31.54.210:cd /centos'
                 }    
             }
         }  
